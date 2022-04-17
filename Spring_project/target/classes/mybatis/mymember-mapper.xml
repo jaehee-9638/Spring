@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mymember">
+	<resultMap type="mymemberDto" id="mymemberMap">
+		<result column="MEMBER_NO" property="member_no"/>
+		<result column="MEMBER_ID" property="member_id"/>
+		<result column="MEMBER_PW" property="member_pw"/>
+		<result column="MEMBER_NAME" property="member_name"/>
+		<result column="MEMBER_ADDR" property="member_addr"/>
+		<result column="MEMBER_PHONE" property="member_phone"/>
+		<result column="MEMBER_EMAIL" property="member_email"/>
+		<result column="MEMBER_ENABLED" property="member_enabled"/>
+		<result column="MEMBER_ROLE" property="member_role"/>
+		
+	</resultMap>
+	<!-- 코드작성하면서 crud태그의 속성 조금씩 조정해줘야함 ! -->
+	<!-- admin: 회원전체정보(탈퇴 포함 ) -->
+	<select id="userAll" resultType="mymemberDto">
+		SELECT MEMBER_NO,MEMBER_ID,MEMBER_PW,MEMBER_NAME,MEMBER_ADDR,
+		MEMBER_PHONE,MEMBER_EMAIL,MEMBER_ENABLED,MEMBER_ROLE 
+		FROM TESTMEMBER
+	</select>
+	
+	<!-- admin:회원전체 (가입상태인 회원만 ) -->
+	<select id="userEn" resultType="mymemberDto">
+		SELECT MEMBER_NO,MEMBER_ID,MEMBER_PW,MEMBER_NAME,MEMBER_ADDR,
+		MEMBER_PHONE,MEMBER_EMAIL,MEMBER_ENABLED,MEMBER_ROLE 
+		FROM TESTMEMBER
+		WHERE MEMBER_ENABLED='Y'
+	</select>
+	
+	<!-- admin : 회원등급 조정  -->
+	<update id="roleUpdate" parameterType="mymemberDto">
+		UPDATE TESTMEMBER
+		SET MEMBER_ROLE=#{member_role} 
+		WHERE MEMBER_NO=#{member_no}
+	</update>
+	
+	<!--admin&user 로그인 -->
+	<select id="login" parameterType="mymemberDto" resultType="mymemberDto">
+		SELECT MEMBER_NO,MEMBER_ID,MEMBER_PW,MEMBER_NAME,MEMBER_ADDR,
+		MEMBER_PHONE,MEMBER_EMAIL,MEMBER_ENABLED,MEMBER_ROLE 
+		FROM TESTMEMBER
+		WHERE MEMBER_ID=#{member_id} AND MEMBER_PW=#{member_pw}
+	</select>
+	
+	<!--user: 회원가입 -->
+	<insert id="regist" parameterType="mymemberDto">
+	
+		INSERT INTO TESTMEMBER (MEMBER_ID,MEMBER_PW,MEMBER_NAME,
+		MEMBER_ADDR,MEMBER_PHONE,MEMBER_EMAIL) 
+		VALUES (#{member_id},#{member_pw},#{member_name},#{member_addr},
+		#{member_phone},#{member_email})
+	</insert>
+	
+	<!-- 아이디 체크  -->
+	
+	<!--admin&user : 내정보 조회  -->
+	<select id="myInfo" resultType="mymemberDto" parameterType="int">
+		SELECT MEMBER_NO,MEMBER_ID,MEMBER_PW,MEMBER_NAME,MEMBER_ADDR,
+		MEMBER_PHONE,MEMBER_EMAIL,MEMBER_ENABLED,MEMBER_ROLE 
+		FROM TESTMEMBER
+		WHERE MEMBER_NO=#{member_no}
+	</select>
+	<!--admin&user : 내정보 수정  :나중에 id수정 추가해서 중복체크 하는거 넣어야함 -->
+	<update id="myInfoUpdate" parameterType="Map">
+		UPDATE TESTMEMBER
+		SET MEMBER_PW=#{member_pw},MEMBER_ADDR=#{member_addr},
+		MEMBER_PHONE=#{member_phone},MEMBER_EMAIL=#{member_email} 
+		WHERE MEMBER_NO=#{member_no}
+	</update>
+	<!--admin&user : 회원 탈퇴(enabled 를 'Y'에서 'N') -->
+	<update id="dropId" parameterType="mymemberDto">
+		UPDATE TESTMEMBER
+		SET MEMBER_ENABLED='N' 
+		WHERE MEMBER_NO=#{member_no}
+	</update>
+	
+	
+	
+</mapper>

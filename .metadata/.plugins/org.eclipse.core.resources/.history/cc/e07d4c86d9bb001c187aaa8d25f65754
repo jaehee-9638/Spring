@@ -1,0 +1,5 @@
+package com.test.mv.dto;
+
+public class MyMemberDto {
+
+}

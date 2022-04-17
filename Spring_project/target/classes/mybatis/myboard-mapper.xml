@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myboard">
+	<resultMap type="myboardDto" id="myboardMap">
+		<result column="BOARD_SEQ" property="board_seq"/>
+		<result column="BOARD_ID" property="board_id"/>
+		<result column="BOARD_TITLE" property="board_title"/>
+		<result column="BOARD_CONTENT" property="board_content"/>
+		<result column="BOARD_REGDATE" property="board_regdate"/>
+		<result column="BOARD_READ" property="board_read"/>
+		<result column="BOARD_PW" property="board_pw"/>
+		<result column="BOARD_THUMBIMG" property="board_thumbimg"/>
+		<result column="BOARD_GDSIMG" property="board_gdsimg"/>
+		
+	</resultMap>
+
+	<select id="selectList" resultType="myboardDto">
+	
+		SELECT BOARD_SEQ,BOARD_ID,BOARD_TITLE,BOARD_CONTENT,
+		BOARD_REGDATE,BOARD_READ,BOARD_PW 
+		FROM TESTBOARD
+	</select>
+	
+	<select id="selectOne" resultType="myboardDto">
+		SELECT BOARD_SEQ,BOARD_ID,BOARD_TITLE,BOARD_CONTENT,
+		BOARD_REGDATE,BOARD_READ,BOARD_PW ,BOARD_THUMBIMG,BOARD_GDSIMG 
+		FROM TESTBOARD
+		WHERE BOARD_SEQ=#{board_seq}
+	</select>
+	
+	<insert id="insert" parameterType="myboardDto">
+		INSERT INTO TESTBOARD (BOARD_ID,BOARD_TITLE,BOARD_CONTENT,BOARD_THUMBIMG,BOARD_GDSIMG) 
+		VALUES (#{board_id},#{board_title},#{board_content},#{board_thumbimg},#{board_gdsimg})
+	</insert>
+	
+	<update id="update" parameterType="myboardDto">
+		UPDATE TESTBOARD 
+		SET BOARD_TITLE=#{board_title},BOARD_CONTENT=#{board_content},BOARD_PW=#{board_pw}
+		WHERE BOARD_SEQ=#{board_seq}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM TESTBOARD 
+		WHERE BOARD_SEQ=#{board_seq}
+	</delete>
+	<!-- 조회수 카운트 -->
+	<update id="viewCount" parameterType="myboardDto">
+		UPDATE TESTBOARD 
+		SET BOARD_READ=BOARD_READ+1
+		WHERE BOARD_SEQ=#{board_seq}
+	</update>
+	<!-- 페이징 :게시글 총 갯수  -->
+	<select id="paging" resultType="int">
+		SELECT COUNT(BOARD_SEQ) FROM TESTBOARD
+	</select>
+	<!-- 게시물 목록 + 페이징  -->
+	<select id="selectListPage" parameterType="int" resultType="myboardDto" >
+		SELECT * FROM 
+			(SELECT ROW_NUMBER() OVER (ORDER BY BOARD_SEQ DESC) ROW_SEQ, 
+			TB.BOARD_SEQ,TB.BOARD_ID,TB.BOARD_TITLE,TB.BOARD_CONTENT, 
+			TB.BOARD_REGDATE,TB.BOARD_READ,TB.BOARD_PW ,TB.BOARD_THUMBIMG,TB.BOARD_GDSIMG 
+			FROM TESTBOARD TB ORDER BY BOARD_SEQ) 
+		WHERE ROW_SEQ BETWEEN #{start_num} AND #{start_num}+9
+        ORDER BY ROW_SEQ  
+	</select>
+	
+	
+	
+	
+</mapper>

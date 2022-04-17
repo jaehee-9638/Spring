@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;aop01.png&apos; to &apos;Spring06_TestAop01_Test1/src/com.test01&apos;&#x0D;&#x0A;- Original project: &apos;Spring06_TestAop01_Test&apos;&#x0D;&#x0A;- Destination element: &apos;Spring06_TestAop01_Test1/src/com.test01&apos;&#x0D;&#x0A;- Original element: &apos;aop01.png&apos;" description="Copy file" destination="=Spring06_TestAop01_Test1/src=/optional=/true=/=/maven.pomderived=/true=/&lt;com.test01" element1="src/com/test01/aop01.png" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1645442147400" units="0" version="1.0"/>
+</session>

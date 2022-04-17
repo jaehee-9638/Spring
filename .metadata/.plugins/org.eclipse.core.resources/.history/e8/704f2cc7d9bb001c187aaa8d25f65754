@@ -1,0 +1,20 @@
+package com.test.mv.biz;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.test.mv.dao.MyMemberDao;
+import com.test.mv.dto.MyMemberDto;
+
+public class MyMemberBizImpl implements MyMemberBiz {
+
+	@Autowired
+	MyMemberDao dao;
+	@Override
+	public List<MyMemberDto> selectList() {
+		
+		return dao.selectList();
+	}
+
+}

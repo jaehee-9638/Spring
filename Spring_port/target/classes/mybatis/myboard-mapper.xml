@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boardmapper">
+	<resultMap type="boardDto" id="boardMap">
+		<result column="BOARD_SEQ" property="board_seq"/>
+		<result column="BOARD_ID" property="board_id"/>
+		<result column="BOARD_TITLE" property="board_title"/>
+		<result column="BOARD_CONTENT" property="board_content"/>
+		<result column="BOARD_REGDATE" property="board_regdate"/>
+		<result column="BOARD_READ" property="board_read"/>
+		<result column="BOARD_PW" property="board_pw"/>
+	
+	</resultMap>
+
+	<select id="selectAll" resultMap="boardMap">
+		SELECT BOARD_SEQ,BOARD_ID,BOARD_TITLE,BOARD_CONTENT,BOARD_REGDATE,BOARD_READ,BOARD_PW
+		FROM TESTBOARD
+	</select>
+	<select id="selectOne" resultType="boardDto">
+		SELECT BOARD_SEQ,BOARD_ID,BOARD_TITLE,BOARD_CONTENT,BOARD_REGDATE,BOARD_READ,BOARD_PW
+		FROM TESTBOARD WHERE BOARD_SEQ=#{board_seq}
+	</select>
+	<insert id="insert" parameterType="">
+	
+		INSERT INTO TESTBOARD (BOARD_ID,BOARD_TITLE,BOARD_CONTENT,BOARD_PW) 
+		VALUES (#{board_id},#{board_title},#{board_content},#{board_pw})
+	
+	</insert>
+	
+	<update id="update" parameterType="Map">
+		UPDATE TESTBOARD
+		SET BOARD_TITLE=#{board_title},BOARD_CONTENT=#{board_content},BOARD_PW=#{board_pw}
+		WHERE BOARD_SEQ=#{board_seq}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM TESTBOARD
+		WHERE BOARD_SEQ=#{board_seq}
+	</delete>
+
+
+</mapper>

@@ -1,0 +1,11 @@
+1647489983435	Move 'index.jsp' to 'WEB-INF'
+1647489986682	Move 'index.jsp' to 'webapp'
+1647490062663	Move 'index.jsp' to 'views'
+1647490187732	Move 'index.jsp' to 'webapp'
+1647490561505	Delete element
+1647493486666	Rename resource 'root-context.xml'
+1647493489475	Move 'applicationContext.xml' to 'appServlet'
+1647498927839	Rename type 'MyBoardBIz'
+1647503368484	Rename resource 'applicationContext.xml'
+1647504378478	Delete element
+1647504598291	Move 'root-context.xml' to 'appServlet'

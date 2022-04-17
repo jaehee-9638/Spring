@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ordertable">
+
+	<resultMap type="myOrderDto" id="myOrderMap">
+		<result property="orderSeq" column="ORDERSEQ"/>
+		<result property="productPrice" column="PRODUCTPRICE"/>
+		<result property="delivery" column="DELIVERY"/>
+		<result property="amount" column="AMOUNT"/>
+		<result property="receiveAddress" column="RECEIVEADDRESS"/>
+		<result property="receiveName" column="RECEIVENAME"/>
+		<result property="quantity" column="QUANTITY"/>
+		<result property="productName" column="PRODUCTNAME"/>
+		<result property="orderDate" column="ORDERDATE"/>
+		<result property="productSeq" column="PRODUCTSEQ"/>
+		<result property="userId" column="USERID"/>
+	</resultMap>
+
+	<select id="myOrderSelectList" resultType="myOrderDto">
+	 	SELECT orderSeq,productPrice,delivery,amount,receiveAddress,receiveName,quantity,productName,orderDate,productSeq,userId
+		FROM myOrder
+		ORDER BY orderSeq DESC
+	</select>
+	
+	<insert id="myOrderInsert" parameterType="myOrderDto">
+		INSERT INTO myOrder
+		VALUES(orderSeq.NEXTVAL,#{productPrice},#{delivery},#{amount},#{receiveAddress},#{receiveName},#{quantity},#{productName},SYSDATE,#{productSeq},#{userId})
+	
+	</insert>
+	
+	<select id="myOrderSelectOne" resultMap="myOrderMap">
+		SELECT orderSeq,productPrice,delivery,amount,receiveAddress,receiveName,quantity,productName,orderDate,productSeq,userId
+	 	FROM myOrder
+	 	WHERE orderSeq = #{orderSeq}
+	</select>
+	
+	<update id="myOrderUpdate" parameterType="myOrderDto">
+		UPDATE myOrder
+		SET receiveAddress = #{receiveAddress}, receiveName = #{receiveName}
+		WHERE orderSeq = #{orderSeq}
+	</update>
+	
+	<delete id="myOrderDelete" parameterType="int">
+		DELETE FROM myOrder
+		WHERE orderSeq = #{orderSeq}
+	
+	</delete>
+</mapper>

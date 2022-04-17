@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+
+<!-- 네임 스페이스는 aop추가해야함 -->
+
+	<bean name="logAop" class="com.test.mvc.common.aop.LogAop"/>
+	
+	<aop:config>
+		<aop:pointcut expression="execution(public * com.test.mvc.board.dao.*Dao*.*(..))" id="daoPoint"/>
+		<!-- 접근제한자 퍼블릭찾고,*: 리턴타입은 상관없고, ~~~dao 패키지 안에있는 클래스 중에  ,*dao* :one or more  ,*(..):메소드 
+			앞뒤에 한개 이상 잇는거 찾는거라 다오임플 찾게더ㅚ는거임 
+		  -->
+		<aop:aspect id="logAop" ref="logAop">
+			<aop:before method="before" pointcut-ref="daoPoint" />
+			<aop:after method="after" pointcut-ref="daoPoint" />
+			<aop:after-throwing method="afterThrowing" pointcut-ref="daoPoint" />
+		</aop:aspect>
+	</aop:config>
+
+
+</beans>

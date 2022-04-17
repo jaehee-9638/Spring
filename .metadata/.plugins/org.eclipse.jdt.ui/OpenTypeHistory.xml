@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+    <typeInfo handle="=SpringMVC03_a/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.mvc.upgrade.model.dao{MyOrderDao.java[MyOrderDao" modifiers="513" timestamp="1624268227704"/>
+    <typeInfo handle="=SpringMVC03_a/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.mvc.upgrade.model.biz{MyOrderBiz.java[MyOrderBiz" modifiers="513" timestamp="1624268566521"/>
+    <typeInfo handle="=Spring031/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.hello.mvc.dao{MYBoardDao.java[MYBoardDao" modifiers="513" timestamp="1645777279831"/>
+    <typeInfo handle="=Spring031/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.hello.mvc.biz{MYBoardBiz.java[MYBoardBiz" modifiers="513" timestamp="1645772444296"/>
+    <typeInfo handle="=Spring031/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.hello.mvc.dao{MYMemberDao.java[MYMemberDao" modifiers="513" timestamp="1645943929931"/>
+    <typeInfo handle="=Spring031/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.hello.mvc.biz{MYMemberBiz.java[MYMemberBiz" modifiers="513" timestamp="1645866963999"/>
+    <typeInfo handle="=Spring_port/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.test.mvc.dao{BoardDao.java[BoardDao" modifiers="513" timestamp="1646818026100"/>
+    <typeInfo handle="=Spring_port/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.test.mvc.biz{BoardBiz.java[BoardBiz" modifiers="513" timestamp="1646818045571"/>
+    <typeInfo handle="=Spring_project/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.test.mvc.board.biz{MyBoardBiz.java[MyBoardBiz" modifiers="513" timestamp="1649057464753"/>
+    <typeInfo handle="=Spring_project/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.test.mvc.member.biz{MyMemberBiz.java[MyMemberBiz" modifiers="513" timestamp="1647847032374"/>
+    <typeInfo handle="=Spring_project/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.test.mvc.member.dao{MyMemberDao.java[MyMemberDao" modifiers="513" timestamp="1647847055146"/>
+    <typeInfo handle="=Spring_test/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.test.mv.biz{MyMemberBiz.java[MyMemberBiz" modifiers="513" timestamp="1649929303944"/>
+    <typeInfo handle="=Spring_test/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.test.mv.dao{MyMemberDao.java[MyMemberDao" modifiers="513" timestamp="1649929293782"/>
+</typeInfoHistroy>

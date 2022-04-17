@@ -1,0 +1,4 @@
+1646816201926	Move 'index.jsp' to 'webapp'
+1646817249771	Move 'root-context.xml' to 'appServlet'
+1646817263223	Rename resource 'root-context.xml'
+1646817621894	Delete element

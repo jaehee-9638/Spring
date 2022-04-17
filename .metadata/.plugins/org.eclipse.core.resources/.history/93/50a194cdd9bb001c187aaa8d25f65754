@@ -1,0 +1,15 @@
+package com.test.mv.dao;
+
+import java.util.List;
+
+import com.test.mv.dto.MyMemberDto;
+
+public class MyMemberDaoImpl implements MyMemberDao {
+
+	@Override
+	public List<MyMemberDto> selectList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

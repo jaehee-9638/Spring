@@ -1,0 +1,5 @@
+package com.test.mv.dao;
+
+public interface MyMemberDao {
+
+}

@@ -1,0 +1,62 @@
+<web.xml>
+root-context -> applicationcontext.xml로 하고 appServlet안으로 
+인코딩 필터 
+
+<pom.xml>
+1. commons-io(2.8.0),commons-fileupload(1.4)추가
+
+<applicationcontext.xml>
+CommonsMultipartResolver클래스 사용할거고 
+id는 multipartResolver로 지정 
+생성자 2개 maxuploadsize, defaultEncoding(UTF-8로)
+
+<upload.jsp>
+1.jstl form태그 사용할거임 속성 (method,enctype,modelAttribute,action ) -> 컨트롤러로 보낼거임 
+2.input태그 이용해서 file가져오고
+3.에러시메세지 미리 체크해두자 -> 이따 파일형식 안맞는걸로 테스트해보자 
+4.textarea로 파일명도 같이보낼거임  
+
+<FileValidator.java>: 유효성 검사 @Service 
+impl Validator 
+supports메소드 : validator사용가능 여부 확인 
+validate메소드 : dto역활하는 파일 저장한 객체 가져와서 target넣어본다 
+-> 만약 그 파일 사이즈가 0 이면 errors.rejectValue()메소드 사용해서 에러코드 출력하자 
+
+<UploadFile.java> dto 역활임 
+name,desc,mpfile(MultipartFile타입) 만들고 게터 세터만 만들어줄거임 
+
+<controller><upload>
+1.파일 보낸거 받을거고 파라미터는 (요청 , 모델,파일(클래스 객체 사용),결과값 )
+BindingResult : 검증 오류가 발생할 경우 오류 내용을 보관하는 스프링 프레임워크에서 제공하는 객체
+2.유효성검사 클래스 객체화 (autowired)시키고 메소드 호출 인자로 파일이랑 결과값 줄거임 
+3.result 가 에러나면 업로드 페이지 리턴 
+MultiFile이란 
+4.사용자가 업로드한 파일을 가지고옴 -- dto에서 불러와서 MultipartFile객체에 넣어준다. 
+5.사용자가 업도르한 파일의 이름을 가지고옴 -- 불러온애 오리지널 이름 가지고와서 변수에 넣어준다.
+6.서버에 넣은 파일 정보에 대한 내용의 객체를 생성 -- dto객체화 
+7.서버쪽 객체에 내용을 넣음 --name에 file의 오리지널 이름 넣어주고, desc에는 파라미터로 들어온 파일의 이름 넣어준다.
+8.데이터를 가지고올 객체(InputStream)와 데이터를 내보낼 객체(OutputStream)를 선언 --
+--try
+9.사용자가 업로드한 파일의 내용을 읽어옴 --
+10. 서버에 넣을 path를 정함 --
+11.폴더를 만듬 --
+12.파일이 없을 경우 파일을 만든다, 파일의 이름은 원래 경로임 --
+13.서버에 저장된 파일에 write해줄 부분 --
+14.읽어온 파일을 바이트 단위로 가지고옴 --
+15.읽어온 파일이 끝이 될때까지 서버 내용부분에 저장 --
+--catch
+--final
+ --try catch또해주고 Stream둘다 닫아주고 
+16.model에 서버쪽 객체에 넣은내용(6번에 선언한 객체에 이름이랑 desc넣은거 ) 담아주고 
+17.다운로드 페이지로 리턴 
+
+ 
+<controller><download>
+@ResponseBody : 해당 컨트롤러에서 리턴해주는 값을 리스폰스 객체에 바로 넣어주겠다 (뷰안감)
+1.리턴타입은 byte배열(이동x,리턴값 받아옴 ) 파라미터는 request,response,name 
+--try
+
+--catch-catch 
+
+
+

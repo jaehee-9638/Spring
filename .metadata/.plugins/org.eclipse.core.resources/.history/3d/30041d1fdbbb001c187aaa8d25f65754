@@ -1,0 +1,17 @@
+package com.test.mv.dao;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.test.mv.dto.MyMemberDto;
+@Repository
+public class MyMemberDaoImpl implements MyMemberDao {
+
+	@Override
+	public List<MyMemberDto> selectList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
